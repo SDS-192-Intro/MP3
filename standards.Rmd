@@ -1,5 +1,5 @@
 ---
-title: "SDS 192 Mini-Project 1 Standards"
+title: "SDS 192 Mini-Project 3 and 4 Standards"
 subtitle: "SDS 192"
 author: 
 - name: Author One
@@ -22,31 +22,25 @@ output:
     code_folding: show
 ---
 
-# GitHub
+# Pivoting Data
 
-Everyone that submits an assignment will get credit for this!
+Fill response here...
 
-# RMarkdown
+# Joining Data
 
-Fill response here..
+Fill response here...
 
-# Subsetting Data
+# Acquiring API Data
 
-Fill response here..
+Fill response here...
 
-# Aggregating Data
+# Point Mapping
 
-Fill response here..
+Fill response here...
 
-# Importing Data
+# Polygon Mapping
 
-Fill response here..
-
-# Code Styling
-
-Fill response here..
-
-# Cleaning Data
+Fill response here...
 
 # Optional
 
@@ -77,5 +71,33 @@ Fill response here...
 ## Error Resolution and Problem-Solving
 
 Fill response here...
+
+## GitHub
+
+Everyone that submits an assignment will get credit for this!
+
+## RMarkdown
+
+Fill response here..
+
+## Subsetting Data
+
+Fill response here..
+
+## Aggregating Data
+
+Fill response here..
+
+## Importing Data
+
+Fill response here..
+
+## Code Styling
+
+Fill response here..
+
+## Cleaning Data
+
+Fill response here..
 
 

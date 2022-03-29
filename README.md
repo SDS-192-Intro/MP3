@@ -2,57 +2,75 @@
 
 # Overview
 
-In this mini-project, you will wrangle the [Open Payments](https://openpaymentsdata.cms.gov/) dataset in order to reveal at least three findings about the financial relationships between drug and device companies and certain healthcare providers in MA. You will then write up your findings in a short investigative report (400-500 words), written in RMarkdown. You will study the data documentation, review the data dictionary to select variables for your analysis, and then finally produce your analysis. In your blot post, you will key summarize findings from your analysis.
+In this mini-project, you will analyze multiple data sources, including the Environmental Protection Agency's Toxic Release Inventory, recent US Census data on race/ethnicity, health indicators, and historic redlining maps to profile a "fenceline community" in the United States. Fenceline communities are neighborhoods in close proximity to high-risk chemical facilities, and are often sites of environmental racism and other environment justice concerns. Your report, written in RMarkdown, will include visualizations, maps, text, and images that convey the kinds of risks individuals in these communities are exposed to and the extent to which certain demographics are disproportionately exposed to those risks. Every standard we have covered in this course will be practiced in this final assignment.
 
 # Learning Goals
 
 * Navigate different forms of data documentation
-* Import a dataset and prepare it for analysis
-* Apply the verbs of data wrangling to produce insights from data
-* Produce a well-styled RMarkdown report
-* Communicate data findings in writing
+* Access data from APIs
+* Join and glean insights from multiple data tables
+* Produce both point-based and polygon maps of geospatial data
+* Understand the complexities of layering data recorded at different geographic scales
+* Communicate data findings in writing and graphics
 * Evaluate the ethical dimensions of data resources
 
 # Detailed Instructions
 
-## Get to know Open Payments data
+## Get to know the Data Sources
 
 1. Watch:
 
-[![Open Payments](http://img.youtube.com/vi/2IT2YjXFP2U/0.jpg)](http://www.youtube.com/watch?v=2IT2YjXFP2U)
+[![Toxic Release Inventory](http://img.youtube.com/vi/Fqjh6t6Hx6s/0.jpg)](http://www.youtube.com/watch?v=Fqjh6t6Hx6s)
 
-[![Nature of Payments](http://img.youtube.com/vi/5f5eIDI0cW8/0.jpg)](http://www.youtube.com/watch?v=5f5eIDI0cW8)
+[![TRI for Communities](http://img.youtube.com/vi/Hj3yGpe_s-8/0.jpg)](http://www.youtube.com/watch?v=Hj3yGpe_s-8)
 
-> Note that we will be working with the *General Payments* data for 2020.
+2. Read about the Toxic Release Inventory Program [here](https://www.epa.gov/toxics-release-inventory-tri-program/what-toxics-release-inventory).
 
-2. Review the [data documentation](https://www.cms.gov/OpenPayments/Downloads/OpenPaymentsDataDictionary.pdf). Specifically, the data dictionary for this dataset spans pages 21-33. To help you make sense of this data, I will note that the unit of observation in this dataset is a transaction (not a physician or recipient!). You should be able to identify each row using the `record_id` column.  
+3. **Very Important**: Read Factors to Consider [memo] (https://www.epa.gov/system/files/documents/2022-02/factorstoconsider_approved-by-opa_1.25.22-copy.pdf)
 
-3. Explore the [Data Overview](https://www.cms.gov/OpenPayments/Data) page on the Center for Medicare and Medicaid Service's website to learn more. 
+4. Review the [data documentation](https://www.epa.gov/system/files/documents/2021-10/tri-basic-data-file-documentation-ry2020_100721.pdf). Specifically, the data dictionary for this dataset spans pages 5-18. To help you make sense of this data, I will note that the unit of observation in this dataset is a certain chemical release at a particular facility. If a facility reports on more than one chemical, that facility will appear multiple times in the dataset (once for each chemical reported). This means both the facility ID and the chemical ID are needed to uniquely identify each row.  
 
-4. Check out ProPublica's [Dollars for Docs](https://projects.propublica.org/docdollars/) platform for inspiration on how this dataset can be used in investigate journalism. 
+5. Review the About text for the [CDC's Places Dataset](https://chronicdata.cdc.gov/500-Cities-Places/PLACES-Local-Data-for-Better-Health-Census-Tract-D/cwsq-ngmh), and specifically the [Definitions](https://www.cdc.gov/places/measure-definitions/health-outcomes/index.html) the the data's health outcome measures. 
+
+6. Review the [Mapping Inequality Project](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58&text=intro). 
+
+## Select and Research a US Fenceline Community
+
+Some of you may know of examples of current or historic fenceline communities in the US, and others may wish to learn more about those communities. Here are some resources for researching fenceline communities:
+
+* [Life at the Fenceline](https://ej4all.org/life-at-the-fenceline)
+* [WHO’S IN DANGER? Race, Poverty, and Chemical Disasters](https://comingcleaninc.org/assets/media/images/Reports/Who's%20in%20Danger%20Report%20FINAL.pdf)
+
+Ultimately, you should select one US **county** for your analysis for which we have [HOLC Maps](https://dsl.richmond.edu/panorama/redlining/#loc=5/39.1/-94.58&text=downloads) available. Read up about that county online. If you'd like to run your selected county by me, please feel free to do so. 
 
 ## Set up your environment
 
-1. In RStudio, `File` > `New Project` > `Version Control` > `Git` and then copy the URL to this repo. Open `open_payments_analysis.Rmd` and add your group member's names to the header (lines 5, 7, and 9). 
-2. Navigate to the [General Payment Data – Detailed Dataset 2020 Reporting Year](https://openpaymentsdata.cms.gov/dataset/a08c4b30-5cf3-4948-ad40-36f404619019/data).
-3. Create a filter so that the data only includes Payments made to recipients in Massachusetts. The updated table should have just under 75,000 rows. 
-4. Under the box labeled 'Access', click the link to download the filtered CSV. 
-5. Move this CSV file into the data folder on your local machine. **Note that only one student in your group needs to do this.** The dataset can be pushed to other members of your group.
+1. In RStudio, `File` > `New Project` > `Version Control` > `Git` and then copy the URL to this repo. Open `fenceline_analysis.Rmd` and add your group member's names to the header (lines 5, 7, and 9). 
+2. Navigate to the [TRI Basic Data Files](https://www.epa.gov/toxics-release-inventory-tri-program/tri-basic-data-files-calendar-years-1987-present), and download the 2020 file for the state your county is located in. 
+3. Move the CSV file into the `dataset` folder on your local machine. **Note that only one student in your group needs to do this.** The dataset can be pushed to other members of your group.
+4. In `fenceline_analysis.Rmd`, read the CSV file you just downloaded into a data frame. Be sure to use a descriptive variable name for your data frame.
+5. Install the Tidy Census package in `R` using:
 
-## Import and prepare data
+* `install.packages("devtools")`
+* `install.packages("remotes")`
+* `remotes::install_github("walkerke/tidycensus")`.
 
-1. On line 36 of `open_payments_analysis.Rmd`, read the CSV file you just downloaded into a data frame. Be sure to use a descriptive variable name for your data frame. 
-2. Following instructions in the `clean` code chunk to clean the data for analysis. 
+6. Create an API Key for accessing census data [here](https://api.census.gov/data/create_success.html). The key will be emailed to you, and you must activate it with the link you receive in your email. After activating your census key, enter the following into your console, replacing `KEY_HERE` with your census key. 
 
-## Wrangle the data
+```
+census_api_key("KEY_HERE", 
+               overwrite = FALSE, 
+               install = TRUE)
+```
 
-1. Based on your review of the CMS videos, the data documentation, and Dollars for Docs, decide upon one specific question about the financial relationships represented in the data that will motivate your data analysis.
-2. Analyze the data, applying the data wrangling verbs towards answering the question you've identified. There's likely many different ways you can answer your question. I encourage you to start off **simple**, producing an analysis that just touches the surface of the question. You can layer in more complicated analysis as you go along. You should be able to summarize at least three findings from your analysis. 
+## Wrangle and Visualize the Data for the Fenceline Community
+
+Follow the commented instructions in `fenceline_analysis.Rmd` to produce tables, plots, and maps for your community. Note that the steps in this file provide the baseline of what computation you should complete for this final project. Feel free to extend this project in whatever way you choose by adding additional plots, additional maps, or importing and visualizing additional data. 
 
 ## Write report
 
 1. In 400-500 words, you should write up your findings:
-  * Paragraph 1: Introduce the dataset, and the question motivating your analysis
+  * Paragraph 1: Introduce the fenceline community
   * Paragraph 2: Report on findings from your analysis.
   * Paragraph 3: Summarize the key takeaway from your analysis and describe at least one ethical concern we should consider when analyzing this data. As a reminder of our ethics framework for this course:
     * What assumptions and commitments informed the design of this dataset?
@@ -69,24 +87,20 @@ In this mini-project, you will wrangle the [Open Payments](https://openpaymentsd
 
 You will be evaluated on the extent to which your mini-project demonstrates fluency in the following course learning dimensions:
 
-* GitHub
-  * Everyone that submits an assignment will get credit for this!
-* RMarkdown
-  * Has your report been knitted to HTML?
-  * Have you effectively applied RMarkdown syntax to style your report?
-* Subsetting Data
-  * Have you used the `select()` or `filter()` function to effectively subset the data?
-* Aggregating Data
-  * Have you used the `group_by()` function in combination with other data wrangling verbs to effectively aggregate the data?
-* Importing Data
-  * Have you successfully imported a CSV into your environment?
-* Code Styling
-  * Have you used descriptive variable names?
-  * Are you variable names formatted with snake_case?
-  * Do you use indenting and white space effectively in your code?
-* Cleaning Data
-  * Have you successfully convert relevant variables into date formats?
-  * Have you successfully cleaned up name variables in the dataset?
+* Pivoting Data
+  * Have you successfully reshaped a data frame longer?
+  * Have you successfully reshaped a data frame wider?
+* Joining Data
+  * Have you successfully joined two tables for further analysis?
+* Acquiring API Data
+  * Have you constructed a URL with query parameters for acquiring desired API data?
+* Point Mapping
+  * Have you produced maps that plot points by latitude and longitude?
+  * Have you demonstrated effective binning when coloring points?
+* Polygon Mapping
+  * Have you successfully imported a shapefile?
+  * Have you produced maps that plot polygons?
+  * Have you demonstrated effective binning when coloring polygons?
 
 You may also layer in any learning dimensions evaluated in the previous Mini-Project. 
 

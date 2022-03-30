@@ -47,7 +47,7 @@ Uncomment the lines below, and replace FILL_FILE_NAME with the name of your TRI 
 
 # Wrangle TRI Data
 
-Keep in mind that TRI reports emissions per facility per chemical. Create a new data frame below that filters to the emissions reported in Pounds at facilities in your count and then aggregates the data to calculate the total on-site emissions per facility. In other words, each row should be a unique facility, with columns for the TRI ID, the facility name, and the total on-site emissions. This is what you will eventually use to map the data.
+Keep in mind that TRI reports emissions per facility per chemical. Create a new data frame below that filters to the emissions reported in Pounds at facilities in your county and then aggregates the data to calculate the total on-site emissions per facility. In other words, each row should be a unique facility, with columns for the TRI ID, the facility name, and the total on-site emissions. This is what you will eventually use to map the data.
 
 ```{r tri-summary-table, include=FALSE}
 # tri_facility_on_site_totals_county <- 
@@ -79,7 +79,7 @@ Create a table reporting the top ten chemicals emitted on-site in your county, a
 
 # Acquire race and ethnicity data from the 2020 US Census
 
-The EPA's EJScreen visualizes environmental health risk factors alongside a number demographic indicators. One indicator is the percentage of the population that identifies as a person of color, which they define as: 
+The EPA's EJScreen visualizes environmental health risk factors alongside a number of demographic indicators. One indicator is the percentage of the population that identifies as a person of color, which they define as: 
  
 > The percent of individuals in a block group who list their racial status as a race other than white alone and/or list their ethnicity as Hispanic or Latino. That is, all people other than non-Hispanic white-alone individuals. The word "alone" in this case indicates that the person is of a single race, not multiracial.
 

@@ -2,7 +2,7 @@
 
 # Overview
 
-In this mini-project, you will analyze multiple data sources, including the Environmental Protection Agency's Toxic Release Inventory, recent US Census data on race/ethnicity, health indicators, and historic redlining maps to profile a "fenceline community" in the United States. Fenceline communities are neighborhoods in close proximity to high-risk chemical facilities, and are often sites of environmental racism and other environment justice concerns. Your report, written in RMarkdown, will include visualizations, maps, text, and images that convey the kinds of risks individuals in these communities are exposed to and the extent to which certain demographics are disproportionately exposed to those risks. Every standard we have covered in this course will be practiced in this final assignment.
+In this mini-project, you will analyze multiple data sources, including the Environmental Protection Agency's Toxic Release Inventory, recent US Census data on race/ethnicity, health indicators, and historic redlining maps to profile a "fenceline community" in the United States. Fenceline communities are neighborhoods in close proximity to high-risk chemical facilities, and are often sites of environmental racism and other environmental justice concerns. Your report, written in RMarkdown, will include visualizations, maps, text, and images that convey the kinds of risks individuals in these communities are exposed to and the extent to which certain demographics are disproportionately exposed to those risks. Every standard we have covered in this course will be practiced in this final assignment.
 
 # Learning Goals
 
@@ -55,7 +55,7 @@ Ultimately, you should select one US **county** for your analysis for which we h
 * `install.packages("remotes")`
 * `remotes::install_github("walkerke/tidycensus")`.
 
-6. Create an API Key for accessing census data [here](https://api.census.gov/data/create_success.html). The key will be emailed to you, and you must activate it with the link you receive in your email. After activating your census key, enter the following into your console, replacing `KEY_HERE` with your census key. 
+6. Create an API Key for accessing census data [here](https://api.census.gov/data/create_success.html). The key will be emailed to you, and you must activate it with the link you receive in your email. **NOTE: It may take several minutes to activate. If you click on the link in your email, and it doesn't work, try again in a bit.** After activating your census key, enter the following into your console, replacing `KEY_HERE` with your census key. 
 
 ```
 census_api_key("KEY_HERE", 
@@ -65,7 +65,7 @@ census_api_key("KEY_HERE",
 
 ## Wrangle and Visualize the Data for the Fenceline Community
 
-Follow the commented instructions in `fenceline_analysis.Rmd` to produce tables, plots, and maps for your community. Note that the steps in this file provide the baseline of what computation you should complete for this final project. Feel free to extend this project in whatever way you choose by adding additional plots, additional maps, or importing and visualizing additional data. 
+Follow the commented instructions in `fenceline_analysis.Rmd` to produce tables, plots, and maps for your community. Note that the steps in this file provide the baseline of computation you should complete for this final project. While not a requirement of the assignment, feel free to extend this project in whatever way you choose by adding additional plots, additional maps, or importing and visualizing additional data. 
 
 ## Write report
 
@@ -73,9 +73,9 @@ Follow the commented instructions in `fenceline_analysis.Rmd` to produce tables,
   * Paragraph 1: Introduce the fenceline community
   * Paragraph 2: Report on findings from your analysis.
   * Paragraph 3: Summarize the key takeaway from your analysis and describe at least one ethical concern we should consider when analyzing this data. As a reminder of our ethics framework for this course:
-    * What assumptions and commitments informed the design of this dataset?
-    * Who has had a say in data collection and analysis regarding this dataset? Who has been excluded?
-    * What are the benefits and harms of this dataset, and how are they distributed amongst diverse social groups?
+    * What assumptions and commitments informed the design of these datasets?
+    * Who has had a say in data collection and analysis regarding these datasets? Who has been excluded?
+    * What are the benefits and harms of these datasets, and how are they distributed amongst diverse social groups?
 2. Style your report. You may assign headers, fold code, add a table of contents, add images, etc. Be sure to cite any external sources if applicable. Knit your document. 
 
 ## Record standards and submit assignment

@@ -38,3 +38,6 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 .DS_Store
+
+school_analysis_solution.qmd
+2021-22-crdc-data
